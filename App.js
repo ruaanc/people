@@ -1,25 +1,26 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import Header from './src/components/Header';
+import axios from 'axios';
+import {useEffect, useState} from "react";
+import PeopleList from "./src/components/PeopleList";
 
-export default function App() {
+const App = (props) => {
 
-  const renderList = () => {
-    const names = [
-      'Eddie Van Halen',
-      'Jimi Hendrix',
-      'Chimbinha',
-      'Steve Vai'
-    ];
+  const [peoples, setPeoples] = useState([]);
 
-    return names.map((name, index) => {
-      return <Text key={index}>{name}</Text>
+  useEffect(() => {
+    axios.get('https://randomuser.me/api/?nat=br&results=5').then(response => {
+      const {results} = response.data;
+      setPeoples(results);
     });
-  };
+  }, []);
 
   return (
     <View>
-      <Header title="Pessoas!"/>
-      {renderList()}
+      <Header title="Peoples!"/>
+      <PeopleList peoples={peoples}/>
     </View>
   );
 }
+
+export default App;
