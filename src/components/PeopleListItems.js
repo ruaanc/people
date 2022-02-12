@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Image} from "react-native";
+import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 
 const PeopleListItems = props => {
     const { people } = props;
@@ -7,12 +7,14 @@ const PeopleListItems = props => {
     const { title, first, last } = name;
     const { thumbnail } = picture;
     return (
-        <View style={styles.line}>
-            <Image style={styles.avatar} source={{ uri: thumbnail }}/>
-            <Text style={styles.lineText}>
-                {`${title} ${first} ${last}`}
-            </Text>
-        </View>
+        <TouchableOpacity onPress={() => console.log("Clickou")}>
+            <View style={styles.line}>
+                <Image style={styles.avatar} source={{ uri: thumbnail }}/>
+                <Text style={styles.lineText}>
+                    {`${title} ${first} ${last}`}
+                </Text>
+            </View>
+        </TouchableOpacity>
     );
 };
 
