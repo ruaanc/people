@@ -2,10 +2,24 @@ import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import PeoplePage from "./src/pages/PeoplePage";
+import PeopleDetailPage from "./src/pages/PeopleDetailPage";
 
 const AppNavigator = createStackNavigator({
     'Main': {
         screen: PeoplePage
+    },
+    'PeopleDetail': {
+        screen: PeopleDetailPage,
+        navigationOptions: ({ navigation }) => {
+            const { people } = navigation.state.params;
+            return ({
+                title: people.name.first,
+                headerTitleStyle: {
+                    color: 'white',
+                    fontSize: 30
+                }
+            });
+        }
     }
 }, {
    defaultNavigationOptions: {

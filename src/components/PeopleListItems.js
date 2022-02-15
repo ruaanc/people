@@ -2,12 +2,14 @@ import React from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 
 const PeopleListItems = props => {
-    const { people } = props;
+    const { people, onPress } = props;
     const { name, picture } = people;
     const { title, first, last } = name;
     const { thumbnail } = picture;
     return (
-        <TouchableOpacity onPress={() => console.log("Clickou")}>
+        <TouchableOpacity onPress={() => {
+            onPress({ people })
+        }}>
             <View style={styles.line}>
                 <Image style={styles.avatar} source={{ uri: thumbnail }}/>
                 <Text style={styles.lineText}>

@@ -3,7 +3,9 @@ import axios from 'axios';
 import {useEffect, useState} from "react";
 import PeopleList from "../components/PeopleList";
 
-const App = (props) => {
+const PeoplePage = (props) => {
+
+    const { navigation } = props;
 
     const [peoples, setPeoples] = useState([]);
 
@@ -16,9 +18,14 @@ const App = (props) => {
 
     return (
         <View>
-            <PeopleList peoples={peoples}/>
+            <PeopleList
+                peoples={peoples}
+                onPress={(pageParams) => {
+                    navigation.navigate('PeopleDetail', pageParams)
+                }}
+            />
         </View>
     );
 }
 
-export default App;
+export default PeoplePage;
